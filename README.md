@@ -1,8 +1,8 @@
 # Recipes and Ratings: Data Analysis and Predictive Model of Saturated Fat Percentage
 By Kevin Zhu
 ## Project Overview
-This is a data science project on investigating how different factors affect the saturated fat percentage for a recipe
-The datasets used for this project can be find [here](https://dsc80.com/project3/recipes-and-ratings/food.com)
+This is a data science project investigating how different factors affect the saturated fat percentage for a recipe.
+The datasets used for this project can be found [here](https://dsc80.com/project3/recipes-and-ratings/food.com).
 
 ---
 ## Investigating Topic and Introduction
@@ -35,7 +35,7 @@ The other data set we used contains people's opinions to recipes on food.com, wh
 |`'review'`	|Review text|
 
 
-I mainly focused on the `nutrition` column in the first dataset, which contains the the saturated fat content as a daily percentage value (DPV) in addition to other information about the recipe like calories, carbohydrates, sugar, and more. I seperated them into different columns and assigned each category their respective portion data but we will mainly use `sat_fat (#)`
+I mainly focused on the `nutrition` column in the first dataset, which contains the the saturated fat content as a daily percentage value (DPV) in addition to other information about the recipe like calories, carbohydrates, sugar, and more. I seperated them into different columns and assigned each category their respective portion data but we will mainly use `sat_fat (#)`.
 
 ---
 ## Cleaning Data and Exploratory Data Analysis
@@ -168,7 +168,7 @@ The plot below shows the empirical distribution of our test statistics in 1000 p
 From the figure above, we can see that the observed difference in saturated fat content between the two time categories is unlikely to be due to random chance, as the observed test statistic is wayyy to the right of the null distribution. This is further supported by our p-value of 0, which is less than the significance level of 0.05. Hence, we **reject the null hypothesis**.
 
 ## Conclusion:
-Based on the results of the permutation test, we conclude that the observed data provides strong evidence against the null hypothesis, indicating that the difference in saturated fat content between recipes in the "short" and "long" time categories is statistically significant. Therefore, it is most likely that recipes with higher times to prepare have higher saturated fat content percentages. Although we do not know the true reason for this or even if it's a causal relationship, some theories include
+Based on the results of the permutation test, we conclude that the observed data provides strong evidence against the null hypothesis, indicating that the difference in saturated fat content between recipes in the "short" and "long" time categories is statistically significant. Therefore, it is most likely that recipes with higher times to prepare have higher saturated fat content percentages. Although we do not know the true reason for this or even if it's a causal relationship, some theories include2
     -recipes with longer prep times might serve more than just 1 meal
     -recipes with longer prep times might serve more than 1 person
     -recipes with longer prep times involve more oil-heavy processes(frying grilling)
@@ -176,7 +176,7 @@ Based on the results of the permutation test, we conclude that the observed data
 ## Now we move onto our Prediction Model!
 ## Framing the Problem
 
-My prediction problem is to predict the saturated fat content of a given recipe, and this is a regression problem since saturated fat content as a daily percentage value is a continuous numeric variable. I chose to predict saturated fat content because it is in direct relation with the previous parts of my analysis and also because I think it is the most useful thing to predict, other than perhaps calories. (Predicting something like rating is not very useful to the average person since taste is truly subjective, and predicting time is not very useful either since humans have a good natural intuition of how long a recipe will take. However, humans are very bad at intuitively guessing how healthy a food is, saturated fat content wise). I will be using R^2 to evaluate my model since it is more reader friendly than RMSE(as RMSE is relative between models while R^2 is always between 0 and 1, with 0 being awful and 1 being amazing).
+My prediction problem is to predict the saturated fat content of a given recipe, and this is a regression problem since saturated fat content as a daily percentage value is a continuous numeric variable. I chose to predict saturated fat content because it is in direct relation with the previous parts of my analysis and also because I think it is the most useful thing to predict, other than perhaps calories. (Predicting something like rating is not very useful to the average person since taste is truly subjective, and predicting time is not very useful either since humans have a good natural intuition of how long a recipe will take. However, humans are very bad at intuitively guessing how healthy a food is, saturated fat content wise). I will be using R² to evaluate my model since it is more reader friendly than RMSE(as RMSE is relative between models while R² is always between 0 and 1, with 0 being awful and 1 being amazing).
 
 ## Baseline Model
 
@@ -184,7 +184,7 @@ My baseline model uses average rating, date of submission, and number of steps. 
 
 In the end, I decided with single imputation. It resulted in much, much faster model training times, and the performance tradeoff between probabilistic and single imputatation was negligible since our data had over 234,429 rows and there were were only about 15,000 missing - which is about 6% missing, so replacing the missing values with the mean of all ratings would only marginally affect our model performance.
 
-The performance of my model was not ideal, with an R^2 of close to 0. However, since this is a baseline model, and only includes 3 features, it makes sense that even an advanced machine learning model cannot predict saturated fat content of a recipe given its submission time, number of steps and average rating. Expecting this model to predict with extreme accuracy given these features is like expecting someone to tell you if it's going to rain based on the menu at McDonald's - somewhat plausible, maybe Mickey D's likes to serve Filet-O-Fishes on rainy days, but not very realistic.
+The performance of my model was not ideal, with an R² of close to 0. However, since this is a baseline model, and only includes 3 features, it makes sense that even an advanced machine learning model cannot predict saturated fat content of a recipe given its submission time, number of steps and average rating. Expecting this model to predict with extreme accuracy given these features is like expecting someone to tell you if it's going to rain based on the menu at McDonald's - somewhat plausible, maybe Mickey D's likes to serve Filet-O-Fishes on rainy days, but not very realistic.
 
 ## Final Model
 
@@ -194,14 +194,14 @@ I also ran into the issue of choosing which hyperparameters were best. I had to 
 
 This final model improved much, much more compared to the original baseline model. This makes sense- the two features I added should correlate much more heavily with saturated fat content on paper- calories and time to prepare. Using the previous analogy, it's like asking someone if it's going to rain based on the clothing people in the streets are wearing-much more plausible and more likely to give you a correct answer. 
 
-If I were to use the "Linkedin approach" to boasting of my model's improvement, I'd tell you it improved by with a increased R^2 of nearly 1000 percent. However, I will gladly humbly tell you the the undecorated version that it went from having an R^2 of about 0.02 to 0.2. That's still an incredibly significant jump, though, and definitely worth celebrating.
+If I were to use the "Linkedin approach" to boasting of my model's improvement, I'd tell you it improved by with a increased R² of nearly 1000 percent. However, I will gladly humbly tell you the the undecorated version that it went from having an R² of about 0.02 to 0.2. That's still an incredibly significant jump, though, and definitely worth celebrating.
 
 ## Fairness Analysis
 Model fairness is important, and so to make sure that no recipes are left behind, I needed to answer the question, "does my model perform worse for individuals in Group X than it does for individuals in Group Y?”.
 
 So, I conducted a permutation test.
 
-My two groups were simply the binarization of time to prepare I had used earlier. Essentially, if time to prepare was below average, versus if time to prepare was below or at average. My evaluation metric was R^2, for reasons meantioned earlier, so my test statistic is the difference of means between "short" recipes and "long" recipes(short-long). Therefore, my null and alternative hypotheses are:
+My two groups were simply the binarization of time to prepare I had used earlier. Essentially, if time to prepare was below average, versus if time to prepare was below or at average. My evaluation metric was R², for reasons meantioned earlier, so my test statistic is the difference of means between "short" recipes and "long" recipes(short-long). Therefore, my null and alternative hypotheses are:
 
 **Null Hypothesis**: There is no significant difference in the performance of the model (e.g., R²) when predicting the saturated fat content for recipes with preparation times above/at average compared to those with preparation times below average. Any observed difference is due to random chance.
 
