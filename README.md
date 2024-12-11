@@ -34,7 +34,9 @@ The other data set we used contains people's opinions to recipes on food.com, wh
 |`'rating'`	|Rating given|
 |`'review'`	|Review text|
 
+
 I mainly focused on the `nutrition` column in the first dataset, which contains the the saturated fat content as a daily percentage value (DPV) in addition to other information about the recipe like calories, carbohydrates, sugar, and more. I seperated them into different columns and assigned each category their respective portion data but we will mainly use `sat_fat (#)`
+
 ---
 ## Cleaning Data and Exploratory Data Analysis
 ### Data Cleaning
